@@ -1,0 +1,37 @@
+package shin_student.ui.panel.score;
+
+import javax.swing.JPanel;
+import java.awt.BorderLayout;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+public class LowPanel extends JPanel {
+	private JTable table;
+
+	/**
+	 * Create the panel.
+	 */
+	public LowPanel() {
+		initialize();
+	}
+	private void initialize() {
+		setBounds(12, 93, 685, 287);
+		setLayout(new BorderLayout(0, 0));
+		
+		JScrollPane scrollPane = new JScrollPane();
+		add(scrollPane, BorderLayout.CENTER);
+		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null, null, null, null, null, null, null, null},
+			},
+			new String[] {
+				"학과", "이름", "학번", "1과목", "2과목", "3과목", "총점", "평균", "평어", "평점"
+			}
+		));
+		scrollPane.setViewportView(table);
+	}
+
+}
