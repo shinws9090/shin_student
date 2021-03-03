@@ -8,16 +8,20 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import shin_student.dao.ComboBoxDao;
+import shin_student.dao.Impl.ComboBoxDaoImpl;
+
+import javax.swing.JComboBox;
+import java.awt.Rectangle;
+
 public class RightPanel extends JPanel {
 	private JTextField textField_9;
 	private JTextField textField_10;
 	private JTextField textField_11;
 	private JTextField textField_12;
 	private JTextField textField_13;
-	private JTextField textField_14;
 	private JTextField textField_15;
-	private JTextField textField_16;
-	private JTextField textField_17;
+	
 
 
 	public RightPanel() {
@@ -38,7 +42,7 @@ public class RightPanel extends JPanel {
 		textField_9.setColumns(6);
 		add(textField_9);
 		
-		JLabel label_9 = new JLabel("학      과");
+		JLabel label_9 = new JLabel("학         과");
 		add(label_9);
 		
 		textField_10 = new JTextField();
@@ -46,7 +50,7 @@ public class RightPanel extends JPanel {
 		textField_10.setColumns(6);
 		add(textField_10);
 		
-		JLabel label_10 = new JLabel("학      년");
+		JLabel label_10 = new JLabel("학         년");
 		add(label_10);
 		
 		textField_11 = new JTextField();
@@ -54,7 +58,7 @@ public class RightPanel extends JPanel {
 		textField_11.setColumns(6);
 		add(textField_11);
 		
-		JLabel label_11 = new JLabel("성      명");
+		JLabel label_11 = new JLabel("성         명");
 		add(label_11);
 		
 		textField_12 = new JTextField();
@@ -62,7 +66,7 @@ public class RightPanel extends JPanel {
 		textField_12.setColumns(6);
 		add(textField_12);
 		
-		JLabel label_12 = new JLabel("학      번");
+		JLabel label_12 = new JLabel("학         번");
 		add(label_12);
 		
 		textField_13 = new JTextField();
@@ -73,10 +77,8 @@ public class RightPanel extends JPanel {
 		JLabel label_13 = new JLabel("학적구분");
 		add(label_13);
 		
-		textField_14 = new JTextField();
-		textField_14.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_14.setColumns(6);
-		add(textField_14);
+		JComboBox comboBox = new JComboBox(ComboBoxDaoImpl.getInstance().ComboListSelect("attendings", "attending"));
+		add(comboBox);
 		
 		JLabel label_14 = new JLabel("생년월일");
 		add(label_14);
@@ -86,21 +88,17 @@ public class RightPanel extends JPanel {
 		textField_15.setColumns(20);
 		add(textField_15);
 		
-		JLabel label_15 = new JLabel("성      별");
+		JLabel label_15 = new JLabel("성         별");
 		add(label_15);
-		
-		textField_16 = new JTextField();
-		textField_16.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_16.setColumns(6);
-		add(textField_16);
+		String[] a = {"남","여"};
+		JComboBox comboBox_1 = new JComboBox(a);
+		add(comboBox_1);
 		
 		JLabel label_16 = new JLabel("병역사항");
 		add(label_16);
 		
-		textField_17 = new JTextField();
-		textField_17.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_17.setColumns(6);
-		add(textField_17);
+		JComboBox comboBox_2 = new JComboBox(ComboBoxDaoImpl.getInstance().ComboListSelect("militarys", "military"));
+		add(comboBox_2);
 	}
 
 }

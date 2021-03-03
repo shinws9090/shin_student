@@ -7,6 +7,12 @@ public class Department {
 		super();
 		this.deptno = deptno;
 	}
+	
+	public Department(String deptname) {
+		super();
+		this.deptname = deptname;
+	}
+
 	public Department(int deptno, String deptname) {
 		super();
 		this.deptno = deptno;

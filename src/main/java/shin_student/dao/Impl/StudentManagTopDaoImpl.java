@@ -12,6 +12,7 @@ import shin_student.dto.Attendings;
 import shin_student.dto.Codes;
 import shin_student.dto.Days;
 import shin_student.dto.Department;
+import shin_student.dto.Militarys;
 import shin_student.util.JdbcUtil;
 
 public class StudentManagTopDaoImpl implements StudentManagTopDao {
@@ -25,87 +26,56 @@ public class StudentManagTopDaoImpl implements StudentManagTopDao {
 	}
 
 	@Override
-	public String[] daysComdoListSelect() {
-		String sql = "select * from Days";
-		try (Connection con = JdbcUtil.getConnection();
-				PreparedStatement pstmt = con.prepareStatement(sql);
-				ResultSet rs = pstmt.executeQuery()) {
+	public List selectByAll(Days day, Department dept, int grade, Attendings attendings) {
+		String sql = "select c.`no`, c.name, c.birthday, c.social, c.dayno, d2.`day`, c.deptno, d.deptname, c.grade, c.atdno, a.attending, c.miltno, m.military \r\n"
+				+ "	from codes c   \r\n" + "	join days d2  on d2.dayno = c.dayno \r\n"
+				+ "	join attendings a on c.atdno = a.atdno\r\n" + "	join department d  on d.deptno = c.deptno \r\n"
+				+ "	join militarys m on m.miltno = c.miltno \r\n"
+				+ "	where d2.`day` = ? and d.deptname = ? and c.grade = ? and a.attending = ?";
+		try (Connection con = JdbcUtil.getConnection(); PreparedStatement pstmt = con.prepareStatement(sql);) {
+			pstmt.setString(1, day.getDay());
+			pstmt.setString(2, dept.getDeptname());
+			pstmt.setInt(3, grade);
+			pstmt.setString(4, attendings.getAttending());
 
-			if (rs.next()) {
-				ArrayList<String> comdolist = new ArrayList<String>();
-				do {
-					comdolist.add(rs.getString("day"));
-				} while (rs.next());
-				String[] list = new String[comdolist.size()];
-				for (int i = 0; i < comdolist.size(); i++) {
-					list[i] = comdolist.get(i);
+			try (ResultSet rs = pstmt.executeQuery()) {
+				if (rs.next()) {
+					ArrayList<Codes> list = new ArrayList<Codes>();
+					do {
+						list.add(getCodes(rs));
+
+					} while (rs.next());
+					return list;
 				}
-				return list;
 			}
-
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 		return null;
 	}
 
-	@Override
-	public String[] deptComdoList() {
-		String sql = "select * from department";
-		try (Connection con = JdbcUtil.getConnection();
-				PreparedStatement pstmt = con.prepareStatement(sql);
-				ResultSet rs = pstmt.executeQuery()) {
-
-			if (rs.next()) {
-				ArrayList<String> comdolist = new ArrayList<String>();
-				do {
-					comdolist.add(rs.getString("deptname"));
-				} while (rs.next());
-				String[] list = new String[comdolist.size()];
-				for (int i = 0; i < comdolist.size(); i++) {
-					list[i] = comdolist.get(i);
-				}
-				return list;
-			}
-
+	private Codes getCodes(ResultSet rs) throws SQLException {
+		int no = rs.getInt("no");
+		String name = rs.getString("name");
+		int birthday = rs.getInt("birthday");
+		int social = rs.getInt("social");
+		Days dayno = new Days(rs.getInt("dayno"));
+		Department deptno = new Department("deptno");
+		int grade = rs.getInt("grade");
+		Attendings atdno = new Attendings(rs.getString("atdno"));
+		Militarys miltno = new Militarys(rs.getString("miltno"));
+		try {
+			dayno.setDay(rs.getString("day"));
+			deptno.setDeptname(rs.getString("deptname"));
+			atdno.setAttending(rs.getString("attending"));
+			miltno.setMilitary(rs.getString("military"));
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+
 		}
-		return null;
-	}
 
-	@Override
-	public String[] attenComdoList() {
-		String sql = "select * from attendings";
-		try (Connection con = JdbcUtil.getConnection();
-				PreparedStatement pstmt = con.prepareStatement(sql);
-				ResultSet rs = pstmt.executeQuery()) {
-
-			if (rs.next()) {
-				ArrayList<String> comdolist = new ArrayList<String>();
-				do {
-					comdolist.add(rs.getString("attending"));
-				} while (rs.next());
-				String[] list = new String[comdolist.size()];
-				for (int i = 0; i < comdolist.size(); i++) {
-					list[i] = comdolist.get(i);
-				}
-				return list;
-			}
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	@Override
-	public List selectByAll(Days day, Department dept, Codes grade, Attendings attendings) {
-		
-		return null;
+		return new Codes(no, name, birthday, social, dayno, deptno, grade, atdno, miltno);
 	}
 
 }

@@ -9,6 +9,11 @@ public class Days {
 		this.dayno = dayno;
 	}
 
+	public Days(String day) {
+		super();
+		this.day = day;
+	}
+
 	public Days(int dayno, String day) {
 		super();
 		this.dayno = dayno;

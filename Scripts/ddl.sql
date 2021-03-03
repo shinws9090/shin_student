@@ -1,193 +1,194 @@
--- ÇĞ»ı°ü¸®
+-- í•™ìƒê´€ë¦¬
 DROP SCHEMA IF EXISTS `student`;
 
--- ÇĞ»ı°ü¸®
+-- í•™ìƒê´€ë¦¬
 CREATE SCHEMA `student`;
 
--- ÇĞ»ıÁ¤º¸
+-- í•™ìƒì •ë³´
 CREATE TABLE `student`.`codes` (
-	`no`     INT      NOT NULL COMMENT 'ÇĞ¹ø', -- ÇĞ¹ø
-	`dayno`  INT      NULL     COMMENT 'ÁÖ¾ß', -- ÁÖ¾ß
-	`deptno` INT      NULL     COMMENT 'ÇĞ°ú', -- ÇĞ°ú
-	`grade`  INT      NULL     COMMENT 'ÇĞ³â', -- ÇĞ³â
-	`atdno`  CHAR(10) NULL     COMMENT 'ÀçÇĞ', -- ÀçÇĞ
-	`miltno` CHAR(10) NULL     COMMENT 'º´¿ª' -- º´¿ª
+	`no`       INT         NOT NULL COMMENT 'í•™ë²ˆ', -- í•™ë²ˆ
+	`name`     VARCHAR(20) NOT NULL COMMENT 'ì´ë¦„', -- ì´ë¦„
+	`birthday` INT         NOT NULL COMMENT 'ìƒë…„ì›”ì¼', -- ìƒë…„ì›”ì¼
+	`social`   INT         NOT NULL COMMENT 'ì£¼ë¯¼ë²ˆí˜¸ ë’·ìë¦¬', -- ì£¼ë¯¼ë²ˆí˜¸ ë’·ìë¦¬
+	`dayno`    INT         NULL     COMMENT 'ì£¼ì•¼', -- ì£¼ì•¼
+	`deptno`   INT         NULL     COMMENT 'í•™ê³¼', -- í•™ê³¼
+	`grade`    INT         NULL     COMMENT 'í•™ë…„', -- í•™ë…„
+	`atdno`    CHAR(10)    NULL     COMMENT 'ì¬í•™', -- ì¬í•™
+	`miltno`   CHAR(10)    NULL     COMMENT 'ë³‘ì—­' -- ë³‘ì—­
 )
-COMMENT 'ÇĞ»ıÁ¤º¸';
+COMMENT 'í•™ìƒì •ë³´';
 
--- ÇĞ»ıÁ¤º¸
+-- í•™ìƒì •ë³´
 ALTER TABLE `student`.`codes`
-	ADD CONSTRAINT `PK_codes` -- ÇĞ»ıÁ¤º¸ ±âº»Å°
+	ADD CONSTRAINT `PK_codes` -- í•™ìƒì •ë³´ ê¸°ë³¸í‚¤
 		PRIMARY KEY (
-			`no` -- ÇĞ¹ø
+			`no` -- í•™ë²ˆ
 		);
 
--- ÇĞ»ı¼ºÀû
+-- í•™ìƒì„±ì 
 CREATE TABLE `student`.`scores` (
-	`no`   INT NOT NULL COMMENT 'ÇĞ¹ø', -- ÇĞ¹ø
-	`kor`  INT NULL     COMMENT '1°ú¸ñ', -- 1°ú¸ñ
-	`eng`  INT NULL     COMMENT '2°ú¸ñ', -- 2°ú¸ñ
-	`math` INT NULL     COMMENT '3°ú¸ñ' -- 3°ú¸ñ
+	`no`    INT NOT NULL COMMENT 'í•™ë²ˆ', -- í•™ë²ˆ
+	`subno` INT NOT NULL COMMENT 'ê³¼ëª© ì½”ë“œ', -- ê³¼ëª© ì½”ë“œ
+	`score` INT NULL     COMMENT 'ì ìˆ˜' -- ì ìˆ˜
 )
-COMMENT 'ÇĞ»ı¼ºÀû';
+COMMENT 'í•™ìƒì„±ì ';
 
--- ÇĞ»ı¼ºÀû
+-- í•™ìƒì„±ì 
 ALTER TABLE `student`.`scores`
-	ADD CONSTRAINT `PK_scores` -- ÇĞ»ı¼ºÀû ±âº»Å°
+	ADD CONSTRAINT `PK_scores` -- í•™ìƒì„±ì  ê¸°ë³¸í‚¤
 		PRIMARY KEY (
-			`no` -- ÇĞ¹ø
+			`no`,    -- í•™ë²ˆ
+			`subno`  -- ê³¼ëª© ì½”ë“œ
 		);
 
--- º´¿ª
+-- ë³‘ì—­
 CREATE TABLE `student`.`militarys` (
-	`miltno`   CHAR(10) NOT NULL COMMENT 'º´¿ª ÄÚµå', -- º´¿ª ÄÚµå
-	`military` CHAR(10) NOT NULL COMMENT 'º´¿ª ±¸ºĞ' -- º´¿ª ±¸ºĞ
+	`miltno`   CHAR(10) NOT NULL COMMENT 'ë³‘ì—­ ì½”ë“œ', -- ë³‘ì—­ ì½”ë“œ
+	`military` CHAR(10) NOT NULL COMMENT 'ë³‘ì—­ êµ¬ë¶„' -- ë³‘ì—­ êµ¬ë¶„
 )
-COMMENT 'º´¿ª';
+COMMENT 'ë³‘ì—­';
 
--- º´¿ª
+-- ë³‘ì—­
 ALTER TABLE `student`.`militarys`
-	ADD CONSTRAINT `PK_militarys` -- º´¿ª ±âº»Å°
+	ADD CONSTRAINT `PK_militarys` -- ë³‘ì—­ ê¸°ë³¸í‚¤
 		PRIMARY KEY (
-			`miltno` -- º´¿ª ÄÚµå
+			`miltno` -- ë³‘ì—­ ì½”ë“œ
 		);
 
--- ÀçÇĞ
+-- í•™ì 
 CREATE TABLE `student`.`attendings` (
-	`atdno`     CHAR(10) NOT NULL COMMENT 'ÀçÇĞ ÄÚµå', -- ÀçÇĞ ÄÚµå
-	`attending` CHAR(10) NOT NULL COMMENT 'ÀçÇĞ ±¸ºĞ' -- ÀçÇĞ ±¸ºĞ
+	`atdno`     CHAR(10) NOT NULL COMMENT 'ì¬í•™ ì½”ë“œ', -- ì¬í•™ ì½”ë“œ
+	`attending` CHAR(10) NOT NULL COMMENT 'ì¬í•™ êµ¬ë¶„' -- ì¬í•™ êµ¬ë¶„
 )
-COMMENT 'ÀçÇĞ';
+COMMENT 'í•™ì ';
 
--- ÀçÇĞ
+-- í•™ì 
 ALTER TABLE `student`.`attendings`
-	ADD CONSTRAINT `PK_attendings` -- ÀçÇĞ ±âº»Å°
+	ADD CONSTRAINT `PK_attendings` -- í•™ì  ê¸°ë³¸í‚¤
 		PRIMARY KEY (
-			`atdno` -- ÀçÇĞ ÄÚµå
+			`atdno` -- ì¬í•™ ì½”ë“œ
 		);
 
--- ÇĞ»ı°³ÀÎÁ¤º¸
-CREATE TABLE `student`.`students` (
-	`no`       INT         NOT NULL COMMENT 'ÇĞ¹ø', -- ÇĞ¹ø
-	`name`     VARCHAR(20) NOT NULL COMMENT 'ÀÌ¸§', -- ÀÌ¸§
-	`birthday` INT         NOT NULL COMMENT '»ı³â¿ùÀÏ', -- »ı³â¿ùÀÏ
-	`social`   INT         NOT NULL COMMENT 'ÁÖ¹Î¹øÈ£ µŞÀÚ¸®' -- ÁÖ¹Î¹øÈ£ µŞÀÚ¸®
-)
-COMMENT 'ÇĞ»ı°³ÀÎÁ¤º¸';
-
--- ÇĞ»ı°³ÀÎÁ¤º¸
-ALTER TABLE `student`.`students`
-	ADD CONSTRAINT `PK_students` -- ÇĞ»ı°³ÀÎÁ¤º¸ ±âº»Å°
-		PRIMARY KEY (
-			`no` -- ÇĞ¹ø
-		);
-
--- ÁÖ¾ß±¸ºĞ
+-- ì£¼ì•¼êµ¬ë¶„
 CREATE TABLE `student`.`days` (
-	`dayno` INT      NOT NULL COMMENT 'ÁÖ¾ß ÄÚµå', -- ÁÖ¾ß ÄÚµå
-	`day`   CHAR(10) NOT NULL COMMENT 'ÁÖ¾ß ±¸ºĞ' -- ÁÖ¾ß ±¸ºĞ
+	`dayno` INT      NOT NULL COMMENT 'ì£¼ì•¼ ì½”ë“œ', -- ì£¼ì•¼ ì½”ë“œ
+	`day`   CHAR(10) NOT NULL COMMENT 'ì£¼ì•¼ êµ¬ë¶„' -- ì£¼ì•¼ êµ¬ë¶„
 )
-COMMENT 'ÁÖ¾ß±¸ºĞ';
+COMMENT 'ì£¼ì•¼êµ¬ë¶„';
 
--- ÁÖ¾ß±¸ºĞ
+-- ì£¼ì•¼êµ¬ë¶„
 ALTER TABLE `student`.`days`
-	ADD CONSTRAINT `PK_days` -- ÁÖ¾ß±¸ºĞ ±âº»Å°
+	ADD CONSTRAINT `PK_days` -- ì£¼ì•¼êµ¬ë¶„ ê¸°ë³¸í‚¤
 		PRIMARY KEY (
-			`dayno` -- ÁÖ¾ß ÄÚµå
+			`dayno` -- ì£¼ì•¼ ì½”ë“œ
 		);
 
--- ÇĞ°ú
+-- í•™ê³¼
 CREATE TABLE `student`.`department` (
-	`deptno`   INT         NOT NULL COMMENT 'ÇĞ°ú ÄÚµå', -- ÇĞ°ú ÄÚµå
-	`deptname` VARCHAR(20) NOT NULL COMMENT 'ÇĞ°ú ±¸ºĞ' -- ÇĞ°ú ±¸ºĞ
+	`deptno`   INT         NOT NULL COMMENT 'í•™ê³¼ ì½”ë“œ', -- í•™ê³¼ ì½”ë“œ
+	`deptname` VARCHAR(20) NOT NULL COMMENT 'í•™ê³¼ êµ¬ë¶„' -- í•™ê³¼ êµ¬ë¶„
 )
-COMMENT 'ÇĞ°ú';
+COMMENT 'í•™ê³¼';
 
--- ÇĞ°ú
+-- í•™ê³¼
 ALTER TABLE `student`.`department`
-	ADD CONSTRAINT `PK_department` -- ÇĞ°ú ±âº»Å°
+	ADD CONSTRAINT `PK_department` -- í•™ê³¼ ê¸°ë³¸í‚¤
 		PRIMARY KEY (
-			`deptno` -- ÇĞ°ú ÄÚµå
+			`deptno` -- í•™ê³¼ ì½”ë“œ
 		);
 
--- ¼ºÀûµî±Ş
+-- ì„±ì ë“±ê¸‰
 CREATE TABLE `student`.`ranking` (
-	`rank`    CHAR(5) NOT NULL COMMENT 'Æò¾î', -- Æò¾î
-	`ranksoc` DOUBLE  NULL     COMMENT 'ÆòÁ¡', -- ÆòÁ¡
-	`lowsoc`  INT     NULL     COMMENT 'ÃÖ¼Ò½ÇÁ¡¼ö', -- ÃÖ¼Ò½ÇÁ¡¼ö
-	`hisoc`   INT     NULL     COMMENT 'ÃÖ´ë½ÇÁ¡¼ö' -- ÃÖ´ë½ÇÁ¡¼ö
+	`rank`    CHAR(5) NOT NULL COMMENT 'í‰ì–´', -- í‰ì–´
+	`ranksoc` DOUBLE  NULL     COMMENT 'í‰ì ', -- í‰ì 
+	`lowsoc`  INT     NULL     COMMENT 'ìµœì†Œì‹¤ì ìˆ˜', -- ìµœì†Œì‹¤ì ìˆ˜
+	`hisoc`   INT     NULL     COMMENT 'ìµœëŒ€ì‹¤ì ìˆ˜' -- ìµœëŒ€ì‹¤ì ìˆ˜
 )
-COMMENT '¼ºÀûµî±Ş';
+COMMENT 'ì„±ì ë“±ê¸‰';
 
--- ¼ºÀûµî±Ş
+-- ì„±ì ë“±ê¸‰
 ALTER TABLE `student`.`ranking`
-	ADD CONSTRAINT `PK_TABLE` -- ranking ±âº»Å°
+	ADD CONSTRAINT `PK_ranking` -- ì„±ì ë“±ê¸‰ ê¸°ë³¸í‚¤
 		PRIMARY KEY (
-			`rank` -- Æò¾î
-		);	
-	
--- ÇĞ»ıÁ¤º¸
-ALTER TABLE `student`.`codes`
-	ADD CONSTRAINT `FK_attendings_TO_codes` -- ÀçÇĞ -> ÇĞ»ıÁ¤º¸
-		FOREIGN KEY (
-			`atdno` -- ÀçÇĞ
-		)
-		REFERENCES `student`.`attendings` ( -- ÀçÇĞ
-			`atdno` -- ÀçÇĞ ÄÚµå
+			`rank` -- í‰ì–´
 		);
 
--- ÇĞ»ıÁ¤º¸
-ALTER TABLE `student`.`codes`
-	ADD CONSTRAINT `FK_militarys_TO_codes` -- º´¿ª -> ÇĞ»ıÁ¤º¸
-		FOREIGN KEY (
-			`miltno` -- º´¿ª
-		)
-		REFERENCES `student`.`militarys` ( -- º´¿ª
-			`miltno` -- º´¿ª ÄÚµå
+-- ê³¼ëª©
+CREATE TABLE `student`.`subiects` (
+	`subno`   INT         NOT NULL COMMENT 'ê³¼ëª© ì½”ë“œ', -- ê³¼ëª© ì½”ë“œ
+	`subiect` VARCHAR(10) NULL     COMMENT 'ê³¼ë³µ êµ¬ë¶„' -- ê³¼ë³µ êµ¬ë¶„
+)
+COMMENT 'ê³¼ëª©';
+
+-- ê³¼ëª©
+ALTER TABLE `student`.`subiects`
+	ADD CONSTRAINT `PK_subiects` -- ê³¼ëª© ê¸°ë³¸í‚¤
+		PRIMARY KEY (
+			`subno` -- ê³¼ëª© ì½”ë“œ
 		);
 
--- ÇĞ»ıÁ¤º¸
+-- í•™ìƒì •ë³´
 ALTER TABLE `student`.`codes`
-	ADD CONSTRAINT `FK_students_TO_codes` -- ÇĞ»ı°³ÀÎÁ¤º¸ -> ÇĞ»ıÁ¤º¸
+	ADD CONSTRAINT `FK_attendings_TO_codes` -- í•™ì  -> í•™ìƒì •ë³´
 		FOREIGN KEY (
-			`no` -- ÇĞ¹ø
+			`atdno` -- ì¬í•™
 		)
-		REFERENCES `student`.`students` ( -- ÇĞ»ı°³ÀÎÁ¤º¸
-			`no` -- ÇĞ¹ø
+		REFERENCES `student`.`attendings` ( -- í•™ì 
+			`atdno` -- ì¬í•™ ì½”ë“œ
 		);
 
--- ÇĞ»ıÁ¤º¸
+-- í•™ìƒì •ë³´
 ALTER TABLE `student`.`codes`
-	ADD CONSTRAINT `FK_department_TO_codes` -- ÇĞ°ú -> ÇĞ»ıÁ¤º¸
+	ADD CONSTRAINT `FK_militarys_TO_codes` -- ë³‘ì—­ -> í•™ìƒì •ë³´
 		FOREIGN KEY (
-			`deptno` -- ÇĞ°ú
+			`miltno` -- ë³‘ì—­
 		)
-		REFERENCES `student`.`department` ( -- ÇĞ°ú
-			`deptno` -- ÇĞ°ú ÄÚµå
+		REFERENCES `student`.`militarys` ( -- ë³‘ì—­
+			`miltno` -- ë³‘ì—­ ì½”ë“œ
 		);
 
--- ÇĞ»ıÁ¤º¸
+-- í•™ìƒì •ë³´
 ALTER TABLE `student`.`codes`
-	ADD CONSTRAINT `FK_days_TO_codes` -- ÁÖ¾ß±¸ºĞ -> ÇĞ»ıÁ¤º¸
+	ADD CONSTRAINT `FK_department_TO_codes` -- í•™ê³¼ -> í•™ìƒì •ë³´
 		FOREIGN KEY (
-			`dayno` -- ÁÖ¾ß
+			`deptno` -- í•™ê³¼
 		)
-		REFERENCES `student`.`days` ( -- ÁÖ¾ß±¸ºĞ
-			`dayno` -- ÁÖ¾ß ÄÚµå
+		REFERENCES `student`.`department` ( -- í•™ê³¼
+			`deptno` -- í•™ê³¼ ì½”ë“œ
 		);
 
--- ÇĞ»ı¼ºÀû
+-- í•™ìƒì •ë³´
+ALTER TABLE `student`.`codes`
+	ADD CONSTRAINT `FK_days_TO_codes` -- ì£¼ì•¼êµ¬ë¶„ -> í•™ìƒì •ë³´
+		FOREIGN KEY (
+			`dayno` -- ì£¼ì•¼
+		)
+		REFERENCES `student`.`days` ( -- ì£¼ì•¼êµ¬ë¶„
+			`dayno` -- ì£¼ì•¼ ì½”ë“œ
+		);
+
+-- í•™ìƒì„±ì 
 ALTER TABLE `student`.`scores`
-	ADD CONSTRAINT `FK_codes_TO_scores` -- ÇĞ»ıÁ¤º¸ -> ÇĞ»ı¼ºÀû
+	ADD CONSTRAINT `FK_codes_TO_scores` -- í•™ìƒì •ë³´ -> í•™ìƒì„±ì 
 		FOREIGN KEY (
-			`no` -- ÇĞ¹ø
+			`no` -- í•™ë²ˆ
 		)
-		REFERENCES `student`.`codes` ( -- ÇĞ»ıÁ¤º¸
-			`no` -- ÇĞ¹ø
+		REFERENCES `student`.`codes` ( -- í•™ìƒì •ë³´
+			`no` -- í•™ë²ˆ
+		);
+
+-- í•™ìƒì„±ì 
+ALTER TABLE `student`.`scores`
+	ADD CONSTRAINT `FK_subiects_TO_scores` -- ê³¼ëª© -> í•™ìƒì„±ì 
+		FOREIGN KEY (
+			`subno` -- ê³¼ëª© ì½”ë“œ
+		)
+		REFERENCES `student`.`subiects` ( -- ê³¼ëª©
+			`subno` -- ê³¼ëª© ì½”ë“œ
 		);
 		
 	
--- À¯Àú»ı¼º
+-- ì‚¬ìš©ììƒì„±
 grant all
 	on student.*
 	to 'user_student'@'localhost' identified by 'rootroot';

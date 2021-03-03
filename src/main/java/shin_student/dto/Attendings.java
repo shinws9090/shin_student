@@ -1,25 +1,29 @@
 package shin_student.dto;
 
 public class Attendings {
-	private int atdno;
+	private String atdno;
 	private String attending;
 
-	public Attendings(int atdno) {
+	public Attendings(String atdno) {
 		super();
 		this.atdno = atdno;
 	}
 
-	public Attendings(int atdno, String attending) {
+	
+
+	public Attendings(String atdno, String attending) {
 		super();
 		this.atdno = atdno;
 		this.attending = attending;
 	}
 
-	public int getAtdno() {
+
+
+	public String getAtdno() {
 		return atdno;
 	}
 
-	public void setAtdno(int atdno) {
+	public void setAtdno(String atdno) {
 		this.atdno = atdno;
 	}
 
