@@ -10,11 +10,13 @@ import javax.swing.table.DefaultTableModel;
 
 import shin_student.dto.Codes;
 import java.awt.event.MouseListener;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 
 @SuppressWarnings("serial")
 public class LeftPanel extends JPanel implements MouseListener {
-	public static JTable table;
+	DefaultTableModel tableModel;
+	private JTable table;
 
 	public LeftPanel() {
 
@@ -27,33 +29,33 @@ public class LeftPanel extends JPanel implements MouseListener {
 		JScrollPane scrollPane = new JScrollPane();
 		add(scrollPane);
 
-		table = new JTable();
+//		tableModel = new DefaultTableModel(getList(), new String[] { "학번", "성명", "학적 구분" });
+		table = new JTable(tableModel);
 		table.addMouseListener(this);
-		table.setModel(getModel());
 		scrollPane.setViewportView(table);
 	}
 
-	public static DefaultTableModel getModel() {
-		return new DefaultTableModel(getList(), new String[] { "학번", "성명", "학적 구분" });
-	}
+//	public static DefaultTableModel getModel() {
+//		return new DefaultTableModel(getList(), new String[] { "학번", "성명", "학적 구분" });
+//	}
 
-	private static Object[][] getList() {
-		try {
-		List<Codes> managList = TopPanel.managList;
-		Object[][] arr = new Object[managList.size()][3];
-		for (int i = 0; i < managList.size(); i++) {
-			arr[i][0] = managList.get(i).getNo();
-			arr[i][1] = managList.get(i).getName();
-			arr[i][2] = managList.get(i).getAtdno().getAttending();
-		}
-		return arr;
-			
-		}catch(NullPointerException e) {
-			
-		}
-
-		return null;
-	}
+//	private Object[][] getList() {
+//		try {
+//		List<Codes> managList = a.do_btnSelect_actionPerformed();
+//		Object[][] arr = new Object[managList.size()][3];
+//		for (int i = 0; i < managList.size(); i++) {
+//			arr[i][0] = managList.get(i).getNo();
+//			arr[i][1] = managList.get(i).getName();
+//			arr[i][2] = managList.get(i).getAtdno().getAttending();
+//		}
+//		return arr;
+//			
+//		}catch(NullPointerException e) {
+//			
+//		}
+//
+//		return null;
+//	}
 
 	public void mouseClicked(MouseEvent e) {
 		if (e.getSource() == table) {
@@ -69,7 +71,7 @@ public class LeftPanel extends JPanel implements MouseListener {
 	public void mouseReleased(MouseEvent e) {
 	}
 	protected void do_table_mouseClicked(MouseEvent e) {
-		Object a = getModel().getValueAt(table.getSelectedRow(),0);
-		System.out.println(a);
+//		Object a = getModel().getValueAt(table.getSelectedRow(),0);
+//		System.out.println(a);
 	}
 }

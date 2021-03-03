@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 import shin_student.dao.StudentManagTopDao;
 import shin_student.dao.Impl.ComboBoxDaoImpl;
@@ -21,6 +22,7 @@ import shin_student.dto.Department;
 
 @SuppressWarnings("serial")
 public class TopPanel extends JPanel implements ActionListener {
+	DefaultTableModel tableModel;
 	private JTextField tfGrade;
 	private ComboBoxDaoImpl dao = ComboBoxDaoImpl.getInstance();
 	private JButton btnSelect;
@@ -31,7 +33,7 @@ public class TopPanel extends JPanel implements ActionListener {
 	private JLabel lblGrade;
 	private JLabel lblAtd;
 	private JComboBox cbAtd;
-	protected static List<Codes> managList;
+	private List<Codes> managList;
 
 	public TopPanel() {
 
@@ -90,19 +92,35 @@ public class TopPanel extends JPanel implements ActionListener {
 	protected void do_btnSelect_actionPerformed(ActionEvent arg0) {
 		StudentManagTopDao dao = StudentManagTopDaoImpl.getInstance();
 		try {
+			
+			
 			Days day = new Days((String) cbDays.getSelectedItem());
 			Department dept = new Department((String) cbDept.getSelectedItem());
 			int grade = Integer.parseInt(tfGrade.getText());
 			Attendings attendings = new Attendings("",(String) cbAtd.getSelectedItem());
 			
 			managList = dao.selectByAll(day, dept, grade, attendings);
+//			LeftPanel.table.setModel(LeftPanel.table.getModel());
+			Object[][] arr = new Object[managList.size()][3];
+			tableModel = new DefaultTableModel(arr, new String[] { "학번", "성명", "학적 구분" });
 			
-			LeftPanel.table.setModel(LeftPanel.getModel());
+			for(Codes a : managList) {
+				String[] data = {a.getNo()+"",a.getName(),a.getAtdno().getAttending()};
+				tableModel.addRow(data);
+			}
+//			for (int i = 0; i < managList.size(); i++) {
+//				arr[i][0] = managList.get(i).getNo();
+//				arr[i][1] = managList.get(i).getName();
+//				arr[i][2] = managList.get(i).getAtdno().getAttending();}
+			LeftPanel leftPanel = new LeftPanel();
+			
+			
 			
 		} catch (NumberFormatException e) {
 			JOptionPane.showMessageDialog(null, "학년정보 입력 바랍니다.");
 		}
-
+		
+		
 	}
 
 }
