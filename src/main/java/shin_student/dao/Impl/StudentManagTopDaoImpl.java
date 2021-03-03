@@ -26,7 +26,7 @@ public class StudentManagTopDaoImpl implements StudentManagTopDao {
 	}
 
 	@Override
-	public List selectByAll(Days day, Department dept, int grade, Attendings attendings) {
+	public ArrayList<Codes> selectByAll(Days day, Department dept, int grade, Attendings attendings) {
 		String sql = "select c.`no`, c.name, c.birthday, c.social, c.dayno, d2.`day`, c.deptno, d.deptname, c.grade, c.atdno, a.attending, c.miltno, m.military \r\n"
 				+ "	from codes c   \r\n" + "	join days d2  on d2.dayno = c.dayno \r\n"
 				+ "	join attendings a on c.atdno = a.atdno\r\n" + "	join department d  on d.deptno = c.deptno \r\n"

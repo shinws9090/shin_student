@@ -15,8 +15,11 @@ import java.awt.event.MouseEvent;
 
 @SuppressWarnings("serial")
 public class LeftPanel extends JPanel implements MouseListener {
-	DefaultTableModel tableModel;
 	private JTable table;
+
+	public JTable getTable() {
+		return table;
+	}
 
 	public LeftPanel() {
 
@@ -30,24 +33,29 @@ public class LeftPanel extends JPanel implements MouseListener {
 		add(scrollPane);
 
 //		tableModel = new DefaultTableModel(getList(), new String[] { "학번", "성명", "학적 구분" });
-		table = new JTable(tableModel);
+		table = new JTable();
+		table.setModel(new DefaultTableModel(null, new String[] { "학번", "성명", "학적 구분" }));
 		table.addMouseListener(this);
 		scrollPane.setViewportView(table);
 	}
 
 //	public static DefaultTableModel getModel() {
-//		return new DefaultTableModel(getList(), new String[] { "학번", "성명", "학적 구분" });
+//		return new DefaultTableModel(null, new String[] { "학번", "성명", "학적 구분" });
 //	}
 
-//	private Object[][] getList() {
+//	private static Object[][] getList() {
 //		try {
-//		List<Codes> managList = a.do_btnSelect_actionPerformed();
+//		List<Codes> managList = TopPanel.managList;
 //		Object[][] arr = new Object[managList.size()][3];
 //		for (int i = 0; i < managList.size(); i++) {
 //			arr[i][0] = managList.get(i).getNo();
 //			arr[i][1] = managList.get(i).getName();
 //			arr[i][2] = managList.get(i).getAtdno().getAttending();
 //		}
+////		for(Codes a : managList) {
+////			String[] data = {a.getNo()+"",a.getName(),a.getAtdno().getAttending()};
+////			tableModel.addRow(data);
+////		}
 //		return arr;
 //			
 //		}catch(NullPointerException e) {

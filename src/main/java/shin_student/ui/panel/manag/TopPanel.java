@@ -22,7 +22,7 @@ import shin_student.dto.Department;
 
 @SuppressWarnings("serial")
 public class TopPanel extends JPanel implements ActionListener {
-	DefaultTableModel tableModel;
+	private DefaultTableModel tableModel;
 	private JTextField tfGrade;
 	private ComboBoxDaoImpl dao = ComboBoxDaoImpl.getInstance();
 	private JButton btnSelect;
@@ -33,7 +33,36 @@ public class TopPanel extends JPanel implements ActionListener {
 	private JLabel lblGrade;
 	private JLabel lblAtd;
 	private JComboBox cbAtd;
-	private List<Codes> managList;
+	
+	private Object[][] arrs;
+
+	public JTextField getTfGrade() {
+		return tfGrade;
+	}
+
+	public JComboBox getCbDays() {
+		return cbDays;
+	}
+
+	public JComboBox getCbDept() {
+		return cbDept;
+	}
+
+	public JComboBox getCbAtd() {
+		return cbAtd;
+	}
+
+	public Object[][] getArrs() {
+		return arrs;
+	}
+
+	public DefaultTableModel getTableModel() {
+		return tableModel;
+	}
+
+	public JButton getBtnSelect() {
+		return btnSelect;
+	}
 
 	public TopPanel() {
 
@@ -77,7 +106,7 @@ public class TopPanel extends JPanel implements ActionListener {
 		add(cbAtd);
 
 		btnSelect = new JButton("조회");
-		btnSelect.addActionListener(this);
+//		btnSelect.addActionListener(this);
 		btnSelect.setBounds(537, 5, 57, 23);
 		add(btnSelect);
 	}
@@ -90,37 +119,29 @@ public class TopPanel extends JPanel implements ActionListener {
 
 	@SuppressWarnings("unchecked")
 	protected void do_btnSelect_actionPerformed(ActionEvent arg0) {
-		StudentManagTopDao dao = StudentManagTopDaoImpl.getInstance();
-		try {
-			
-			
-			Days day = new Days((String) cbDays.getSelectedItem());
-			Department dept = new Department((String) cbDept.getSelectedItem());
-			int grade = Integer.parseInt(tfGrade.getText());
-			Attendings attendings = new Attendings("",(String) cbAtd.getSelectedItem());
-			
-			managList = dao.selectByAll(day, dept, grade, attendings);
-//			LeftPanel.table.setModel(LeftPanel.table.getModel());
-			Object[][] arr = new Object[managList.size()][3];
-			tableModel = new DefaultTableModel(arr, new String[] { "학번", "성명", "학적 구분" });
-			
-			for(Codes a : managList) {
-				String[] data = {a.getNo()+"",a.getName(),a.getAtdno().getAttending()};
-				tableModel.addRow(data);
-			}
+//		StudentManagTopDao dao = StudentManagTopDaoImpl.getInstance();
+//		try {
+//
+//			Days day = new Days((String) cbDays.getSelectedItem());
+//			Department dept = new Department((String) cbDept.getSelectedItem());
+//			int grade = Integer.parseInt(tfGrade.getText());
+//			Attendings attendings = new Attendings("", (String) cbAtd.getSelectedItem());
+//
+//			managList = dao.selectByAll(day, dept, grade, attendings);
+//
+//			arrs = new Object[managList.size()][3];
 //			for (int i = 0; i < managList.size(); i++) {
-//				arr[i][0] = managList.get(i).getNo();
-//				arr[i][1] = managList.get(i).getName();
-//				arr[i][2] = managList.get(i).getAtdno().getAttending();}
-			LeftPanel leftPanel = new LeftPanel();
-			
-			
-			
-		} catch (NumberFormatException e) {
-			JOptionPane.showMessageDialog(null, "학년정보 입력 바랍니다.");
-		}
-		
-		
+//				arrs[i][0] = managList.get(i).getNo();
+//				arrs[i][1] = managList.get(i).getName();
+//				arrs[i][2] = managList.get(i).getAtdno().getAttending();
+//			}
+////			tableModel = new DefaultTableModel(arrs, new String[] { "학번", "성명", "학적 구분" });
+////			LeftPanel.table.setModel(new DefaultTableModel(arr, new String[] { "학번", "성명", "학적 구분" }));
+//
+//		} catch (NumberFormatException e) {
+//			JOptionPane.showMessageDialog(null, "학년정보 입력 바랍니다.");
+//		}
+
 	}
 
 }
