@@ -10,7 +10,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import shin_student.dao.StudentManagTopDao;
-import shin_student.dao.Impl.ComboBoxDaoImpl;
+import shin_student.dao.Impl.ListSelectDaoImpl;
 import shin_student.dao.Impl.StudentManagTopDaoImpl;
 import shin_student.dto.Attendings;
 import shin_student.dto.Codes;
@@ -21,7 +21,7 @@ import shin_student.dto.Department;
 public class TopPanel extends JPanel {
 	private DefaultTableModel tableModel;
 	private JTextField tfGrade;
-	private ComboBoxDaoImpl dao = ComboBoxDaoImpl.getInstance();
+	private ListSelectDaoImpl dao = ListSelectDaoImpl.getInstance();
 	private JButton btnSelect;
 	private JLabel lblDays;
 	private JComboBox cbDays;
@@ -36,7 +36,7 @@ public class TopPanel extends JPanel {
 		return lblDays;
 	}
 
-	public ComboBoxDaoImpl getDao() {
+	public ListSelectDaoImpl getDao() {
 		return dao;
 	}
 

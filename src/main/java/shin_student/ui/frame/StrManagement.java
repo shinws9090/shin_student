@@ -1,7 +1,6 @@
 package shin_student.ui.frame;
 
 import java.awt.Component;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -18,19 +17,14 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 import shin_student.dao.StudentManagTopDao;
 import shin_student.dao.Impl.StudentManagTopDaoImpl;
-import shin_student.dto.Attendings;
 import shin_student.dto.Codes;
-import shin_student.dto.Days;
-import shin_student.dto.Department;
 import shin_student.ui.StudentUiMain;
 import shin_student.ui.panel.manag.LeftPanel;
 import shin_student.ui.panel.manag.RightPanel;
 import shin_student.ui.panel.manag.TopPanel;
-import javax.swing.JLayeredPane;
 
 public class StrManagement extends JFrame implements ActionListener, MouseListener {
 

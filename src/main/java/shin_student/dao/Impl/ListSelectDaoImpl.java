@@ -5,18 +5,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 import shin_student.dao.ListSelectDao;
 import shin_student.util.JdbcUtil;
 
-public class ComboBoxDaoImpl implements ListSelectDao {
-	private static final ComboBoxDaoImpl instance = new ComboBoxDaoImpl();
+public class ListSelectDaoImpl implements ListSelectDao {
+	private static final ListSelectDaoImpl instance = new ListSelectDaoImpl();
 
-	private ComboBoxDaoImpl() {
+	private ListSelectDaoImpl() {
 	}
 
-	public static ComboBoxDaoImpl getInstance() {
+	public static ListSelectDaoImpl getInstance() {
 		return instance;
 	}
 

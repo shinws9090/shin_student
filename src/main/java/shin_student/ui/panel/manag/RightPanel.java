@@ -3,20 +3,18 @@ package shin_student.ui.panel.manag;
 import java.awt.Component;
 import java.awt.FlowLayout;
 
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import shin_student.dao.Impl.ComboBoxDaoImpl;
+import shin_student.dao.Impl.ListSelectDaoImpl;
 import shin_student.dto.Attendings;
 import shin_student.dto.Codes;
 import shin_student.dto.Days;
 import shin_student.dto.Department;
 import shin_student.dto.Militarys;
-
-import javax.swing.JComboBox;
-import java.awt.Rectangle;
 
 public class RightPanel extends JPanel {
 	private JTextField tfDays;
@@ -28,7 +26,7 @@ public class RightPanel extends JPanel {
 	private JComboBox  cbSocial;
 	private JComboBox  cbMilt;
 	private JComboBox  cbAtd;
-	private ComboBoxDaoImpl selList = ComboBoxDaoImpl.getInstance();
+	private ListSelectDaoImpl selList = ListSelectDaoImpl.getInstance();
 
 	public JComboBox getCbSocial() {
 		return cbSocial;

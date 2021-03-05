@@ -34,4 +34,8 @@ delete from codes where no = 99999999;
 
 
 select * from attendings ;
-atdno, attending
+atdno, attending;
+
+select * from codes	
+	where social = 1000000 and grade = 2 and atdno = 'h1a' and miltno ='y2a';
+

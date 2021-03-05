@@ -1,7 +1,8 @@
 package shin_student.ui.panel.score;
 
-import javax.swing.JPanel;
 import java.awt.BorderLayout;
+
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;

@@ -1,9 +1,10 @@
 package shin_student.ui.panel.search;
 
-import javax.swing.JPanel;
-import javax.swing.JTable;
-import javax.swing.JScrollPane;
 import java.awt.BorderLayout;
+
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class RightPanel extends JPanel {

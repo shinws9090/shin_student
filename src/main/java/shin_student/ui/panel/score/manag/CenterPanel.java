@@ -1,10 +1,9 @@
 package shin_student.ui.panel.score.manag;
 
-import javax.swing.JPanel;
-import java.awt.GridLayout;
-import javax.swing.JLabel;
-import javax.swing.JButton;
 import java.awt.FlowLayout;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class CenterPanel extends JPanel {
