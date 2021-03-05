@@ -43,6 +43,7 @@ public class StudentManagTopDaoImpl implements StudentManagTopDao {
 					ArrayList<Codes> list = new ArrayList<Codes>();
 					do {
 						list.add(getCodes(rs));
+						System.out.println(getCodes(rs));
 
 					} while (rs.next());
 					return list;
@@ -62,7 +63,7 @@ public class StudentManagTopDaoImpl implements StudentManagTopDao {
 		int birthday = rs.getInt("birthday");
 		int social = rs.getInt("social");
 		Days dayno = new Days(rs.getInt("dayno"));
-		Department deptno = new Department("deptno");
+		Department deptno = new Department(rs.getInt("deptno"));
 		int grade = rs.getInt("grade");
 		Attendings atdno = new Attendings(rs.getString("atdno"));
 		Militarys miltno = new Militarys(rs.getString("miltno"));
@@ -74,8 +75,81 @@ public class StudentManagTopDaoImpl implements StudentManagTopDao {
 		} catch (SQLException e) {
 
 		}
-
+		
 		return new Codes(no, name, birthday, social, dayno, deptno, grade, atdno, miltno);
+	}
+
+	@Override
+	public int update(Codes code2,Codes code) {
+//		System.out.println(code2);
+		System.out.println(code);
+		String sql = "update codes \r\n" + 
+				"	set no = ? , name = ?, birthday = ?, social = ?, dayno = ?, deptno = ?, grade = ?, atdno = ?, miltno = ? \r\n" + 
+				"	where no = ?";
+		try(Connection con = JdbcUtil.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql)){
+			pstmt.setInt(1, code.getNo());
+			pstmt.setString(2, code.getName());
+			pstmt.setInt(3, code.getBirthday());
+			pstmt.setInt(4, code.getSocial());
+			pstmt.setInt(5, code.getDayno().getDayno());
+			pstmt.setInt(6, code.getDeptno().getDeptno());
+			pstmt.setInt(7, code.getGrade());
+			pstmt.setString(8, code.getAtdno().getAtdno());
+			pstmt.setString(9, code.getMiltno().getMiltno());
+			
+			pstmt.setInt(10, code2.getNo());
+			return pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
+	@Override
+	public int insert(Codes code) {
+		System.out.println(code);
+		String sql = "insert into codes values\r\n" + 
+				"	(?, ?, ?, ?, ?, ?, ?, ?, ?);";
+		try(Connection con = JdbcUtil.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql)){
+			
+			pstmt.setInt(1, code.getNo());
+			pstmt.setString(2, code.getName());
+			pstmt.setInt(3, code.getBirthday());
+			pstmt.setInt(4, code.getSocial());
+			pstmt.setInt(5, code.getDayno().getDayno());
+			pstmt.setInt(6, code.getDeptno().getDeptno());
+			pstmt.setInt(7, code.getGrade());
+			pstmt.setString(8, code.getAtdno().getAtdno());
+			pstmt.setString(9, code.getMiltno().getMiltno());
+			
+			return pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+		
+	}
+
+	@Override
+	public int delete(Codes code) {
+		System.out.println(code);
+		String sql = "delete from codes where no = ?";
+		try(Connection con = JdbcUtil.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql)){
+			
+			
+			pstmt.setInt(1, code.getNo());
+			
+			return pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
 	}
 
 }

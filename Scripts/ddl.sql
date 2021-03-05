@@ -175,7 +175,8 @@ ALTER TABLE `student`.`scores`
 		)
 		REFERENCES `student`.`codes` ( -- 학생정보
 			`no` -- 학번
-		);
+		)
+		on update cascade ;
 
 -- 학생성적
 ALTER TABLE `student`.`scores`

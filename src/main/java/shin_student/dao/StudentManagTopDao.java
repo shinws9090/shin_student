@@ -10,5 +10,10 @@ import shin_student.dto.Department;
 public interface StudentManagTopDao {
 	// 조회 버튼 기능
 	List selectByAll(Days day, Department dept, int grade, Attendings attendings);
+	
+	int update(Codes code2, Codes code);
+	int insert(Codes code);
+	int delete(Codes code);
+
 
 }

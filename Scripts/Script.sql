@@ -21,3 +21,17 @@ select c.`no`, c.name, c.birthday, c.social, c.dayno, d2.`day`, c.deptno, d.dept
 	join department d  on d.deptno = c.deptno 
 	join militarys m on m.miltno = c.miltno 
 	where d2.`day` = '주간' and d.deptname ='컴퓨터정보' and c.grade = 1 and a.attending = '재학';
+	
+select * from codes c2 ;
+
+update codes 
+	set no = 17010012 , name = '박태준', birthday = 971011, social = 1000000, dayno = 2, deptno = 2, grade = 2, atdno = 'h1b', miltno = 'y2a'
+	where no = 17010012;
+insert into codes values
+	(99999999 , '박태준', 971011, 1000000, 2, 2, 2, 'h1b', 'y2a');
+	
+delete from codes where no = 99999999;
+
+
+select * from attendings ;
+atdno, attending

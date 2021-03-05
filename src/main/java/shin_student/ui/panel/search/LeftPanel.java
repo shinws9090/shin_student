@@ -7,8 +7,17 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
-public class LeftPanel extends JPanel {
+import shin_student.ui.StudentUiMain;
 
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class LeftPanel extends JPanel {
+	private JButton btnNewButton;
+
+	public JButton getBtnNewButton() {
+		return btnNewButton;
+	}
 	/**
 	 * Create the panel.
 	 */
@@ -52,8 +61,9 @@ public class LeftPanel extends JPanel {
 		JComboBox comboBox_3 = new JComboBox();
 		panel.add(comboBox_3);
 		
-		JButton btnNewButton = new JButton("Home");
+		btnNewButton = new JButton("Home");
 		btnNewButton.setBounds(45, 197, 193, 59);
 		add(btnNewButton);
 	}
+	
 }

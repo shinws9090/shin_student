@@ -13,6 +13,11 @@ public class Codes {
 
 	
 
+	public Codes(int no) {
+		super();
+		this.no = no;
+	}
+
 	public Codes(int no, String name, Attendings atdno) {
 		super();
 		this.no = no;

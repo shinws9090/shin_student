@@ -29,15 +29,17 @@ public class StudentUiMain extends JFrame implements ActionListener {
 	private JButton btnSearch;
 	private JButton btnScoer;
 	private JButton btnClose;
+	public static StudentUiMain frame;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+
 			public void run() {
 				try {
-					StudentUiMain frame = new StudentUiMain();
+					frame = new StudentUiMain();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -103,15 +105,18 @@ public class StudentUiMain extends JFrame implements ActionListener {
 	protected void do_btnManag_actionPerformed(ActionEvent e) {
 		StrManagement frame = new StrManagement();
 		frame.setVisible(true);
+		StudentUiMain.frame.setVisible(false);
 	}
 	
 	protected void do_btnSearch_actionPerformed(ActionEvent e) {
 		StrSearch frame = new StrSearch();
 		frame.setVisible(true);
+		StudentUiMain.frame.setVisible(false);
 	}
 	protected void do_btnScoer_actionPerformed(ActionEvent e) {
 		StrScore frame = new StrScore();
 		frame.setVisible(true);
+		StudentUiMain.frame.setVisible(false);
 	}
 	protected void do_btnClose_actionPerformed(ActionEvent e) {
 		
