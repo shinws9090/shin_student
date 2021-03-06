@@ -10,6 +10,9 @@ import javax.swing.table.DefaultTableModel;
 public class RightPanel extends JPanel {
 	private JTable table;
 
+	public JTable getTable() {
+		return table;
+	}
 	/**
 	 * Create the panel.
 	 */
@@ -24,14 +27,6 @@ public class RightPanel extends JPanel {
 		add(scrollPane, BorderLayout.CENTER);
 		
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null},
-			},
-			new String[] {
-				"학번", "성명", "학과"
-			}
-		));
 		scrollPane.setViewportView(table);
 	}
 

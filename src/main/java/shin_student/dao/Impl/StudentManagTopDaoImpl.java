@@ -14,7 +14,7 @@ import shin_student.dto.Department;
 import shin_student.dto.Militarys;
 import shin_student.util.JdbcUtil;
 
-public class StudentManagTopDaoImpl implements StudentManagTopDao {
+public class StudentManagTopDaoImpl extends SelectByAll implements StudentManagTopDao {
 	private static final StudentManagTopDaoImpl instance = new StudentManagTopDaoImpl();
 
 	private StudentManagTopDaoImpl() {
@@ -28,7 +28,8 @@ public class StudentManagTopDaoImpl implements StudentManagTopDao {
 	public ArrayList<Codes> selectByAll(Days day, Department dept, int grade, Attendings attendings) {
 		String sql = "select c.`no`, c.name, c.birthday, c.social, c.dayno, d2.`day`, c.deptno, d.deptname, c.grade, c.atdno, a.attending, c.miltno, m.military \r\n"
 				+ "	from codes c   \r\n" + "	join days d2  on d2.dayno = c.dayno \r\n"
-				+ "	join attendings a on c.atdno = a.atdno\r\n" + "	join department d  on d.deptno = c.deptno \r\n"
+				+ "	join attendings a on c.atdno = a.atdno\r\n" 
+				+ "	join department d  on d.deptno = c.deptno \r\n"
 				+ "	join militarys m on m.miltno = c.miltno \r\n"
 				+ "	where d2.`day` = ? and d.deptname = ? and c.grade = ? and a.attending = ?";
 		try (Connection con = JdbcUtil.getConnection(); PreparedStatement pstmt = con.prepareStatement(sql);) {
@@ -55,7 +56,7 @@ public class StudentManagTopDaoImpl implements StudentManagTopDao {
 
 		return null;
 	}
-
+/*
 	private Codes getCodes(ResultSet rs) throws SQLException {
 		int no = rs.getInt("no");
 		String name = rs.getString("name");
@@ -77,6 +78,7 @@ public class StudentManagTopDaoImpl implements StudentManagTopDao {
 		
 		return new Codes(no, name, birthday, social, dayno, deptno, grade, atdno, miltno);
 	}
+	*/
 
 	@Override
 	public int update(Codes code2,Codes code) {

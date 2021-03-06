@@ -134,7 +134,7 @@ public class StrManagement extends JFrame implements ActionListener, MouseListen
 	protected void do_btnSelect_actionPerformed(ActionEvent arg0) {
 
 		tableModel = getTableModel();
-		pLeft.getTable().setModel(tableModel);
+		pLeft.getTable().setModel(tableModel); 
 
 	}
 

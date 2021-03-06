@@ -171,7 +171,7 @@ public class RightPanel extends JPanel {
 		if (cbSocial.getSelectedItem() == "남") {
 			social = 1000000;
 		} else {
-			social = 2000000;
+			social = 2000000; 
 		}
 		
 		int i = selList.ListSelectByNo("days", "day", "dayno", tfDays.getText());

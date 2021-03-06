@@ -11,8 +11,6 @@ public class Codes {
 	private Attendings atdno;
 	private Militarys miltno;
 
-	
-
 	public Codes(int no) {
 		super();
 		this.no = no;
@@ -34,6 +32,14 @@ public class Codes {
 		this.social = social;
 		this.dayno = dayno;
 		this.deptno = deptno;
+		this.grade = grade;
+		this.atdno = atdno;
+		this.miltno = miltno;
+	}
+
+	public Codes(int social, int grade, Attendings atdno, Militarys miltno) {
+		super();
+		this.social = social;
 		this.grade = grade;
 		this.atdno = atdno;
 		this.miltno = miltno;

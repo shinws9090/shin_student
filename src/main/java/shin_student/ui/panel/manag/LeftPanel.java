@@ -31,7 +31,7 @@ public class LeftPanel extends JPanel {
 		table.setDragEnabled(true);
 		table.setModel(new DefaultTableModel(null, new String[] { "학번", "성명", "학적 구분" }));
 		
-		scrollPane.setViewportView(table);
+		scrollPane.setViewportView(table); 
 	}
 
 
