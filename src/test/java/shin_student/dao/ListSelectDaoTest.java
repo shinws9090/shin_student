@@ -8,10 +8,7 @@ import shin_student.dao.Impl.ListSelectDaoImpl;
 
 public class ListSelectDaoTest {
 
-	@Test
-	public void testComboListSelect() {
-		fail("Not yet implemented");
-	}
+
 
 	@Test
 	public void testListSelectByStr() {

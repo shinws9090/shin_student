@@ -10,6 +10,12 @@ import javax.swing.table.DefaultTableModel;
 public class LowPanel extends JPanel {
 	private JTable table;
 
+	public JTable getTable() {
+		return table;
+	}
+	public void setTable(JTable table) {
+		this.table = table;
+	}
 	/**
 	 * Create the panel.
 	 */

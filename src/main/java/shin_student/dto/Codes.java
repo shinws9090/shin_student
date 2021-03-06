@@ -45,6 +45,17 @@ public class Codes {
 		this.miltno = miltno;
 	}
 
+	public Codes(Department deptno, int grade) {
+		this.deptno = deptno;
+		this.grade = grade;
+	}
+
+	public Codes(int no, String name, Department deptno) {
+		this.no = no;
+		this.name = name;
+		this.deptno = deptno;
+	}
+
 	public Days getDayno() {
 		return dayno;
 	}
@@ -120,8 +131,42 @@ public class Codes {
 	@Override
 	public String toString() {
 		return String.format(
-				"Codes [no=%s, name=%s, birthday=%s, social=%s, dayno=%s, deptno=%s, grade=%s, atdno=%s, miltno=%s]",
-				no, name, birthday, social, dayno, deptno, grade, atdno, miltno);
+				"[no=%s, name=%s]",
+				no, name);
+	}
+//	@Override
+//	public String toString() {
+//		return String.format(
+//				"Codes [no=%s, name=%s, birthday=%s, social=%s, dayno=%s, deptno=%s, grade=%s, atdno=%s, miltno=%s]",
+//				no, name, birthday, social, dayno, deptno, grade, atdno, miltno);
+//	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + no;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Codes other = (Codes) obj;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (no != other.no)
+			return false;
+		return true;
 	}
 
 	

@@ -39,3 +39,25 @@ atdno, attending;
 select * from codes	
 	where social = 1000000 and grade = 2 and atdno = 'h1a' and miltno ='y2a';
 
+select * from ranking r ;
+
+
+select c.`no`, name, c.deptno, s.subno ,u.subiect ,s.score ,deptname
+	from codes c join scores s on c.no = s.`no` 
+	join department d  on c.deptno = d.deptno
+	join subiects u on u.subno =s.subno 
+	where c.grade = 1 and c.deptno =2 ;
+	
+
+select * from scores s ,ranking r 
+ where score > r.lowsoc and  score <r.hisoc ;
+
+select * from scores s ;
+
+select * from department d ;
+
+select c.`no`, name, deptno, s.subno ,u.subiect ,s.score 
+	from codes c join scores s on c.no = s.`no` 
+	join subiects u on u.subno =s.subno 
+	where grade = 1 and deptno =1 ;
+
