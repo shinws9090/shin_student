@@ -61,3 +61,6 @@ select c.`no`, name, deptno, s.subno ,u.subiect ,s.score
 	join subiects u on u.subno =s.subno 
 	where grade = 1 and deptno =1 ;
 
+select * from ranking 
+	where 71.6 between lowsoc and hisoc ;
+

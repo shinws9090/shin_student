@@ -101,47 +101,31 @@ public class StrScore extends JFrame implements ActionListener {
 
 	private Object[][] getTableList() {
 		List<ScoPrint> list = new ArrayList<ScoPrint>();
-		System.out.println("104--"+scoList);
-		
-		
-		for (Scoers s : scoList) {
-			
-			list.add(new ScoPrint(s.getNo(), 0, 0, 0));
-			for (int i = 0; i < scoList.size()/3; i++) {
-				System.out.println("temp2");
-				if (s.getNo().equals(list.get(i).getCode())) {
-					System.out.println("a  ");
-					switch (s.getSubNo()) {
-					case 1:
-						list.get(i).setSub1(s.getScoer());
-						break;
-					case 2:
-						list.get(i).setSub2(s.getScoer());
-						break;
-					case 3:
-						list.get(i).setSub3(s.getScoer());
-						break;
 
-					}
-				} else {
-					System.out.println("new  ");
-					switch (s.getSubNo()) {
-					case 1:
-						list.add(new ScoPrint(s.getNo(), s.getScoer(), 0, 0));
-						break;
+		for (Scoers s : scoList) {
+			if (s.getSubNo() == 1)
+				list.add(new ScoPrint(s.getNo(), s.getScoer(), 0, 0));
+
+		}
+		for (ScoPrint a : list) {
+			for (int i = 0; i < scoList.size(); i++) {
+				if (a.getCode().equals(scoList.get(i).getNo())) {
+					switch (scoList.get(i).getSubNo()) {
+					
 					case 2:
-						list.add(new ScoPrint(s.getNo(), 0, s.getScoer(), 0));
+						a.setSub2(scoList.get(i).getScoer());
 						break;
 					case 3:
-						list.add(new ScoPrint(s.getNo(), 0, 0, s.getScoer()));
+						a.setSub3(scoList.get(i).getScoer());
 						break;
 
 					}
 				}
 			}
 		}
-		System.out.println("142--"+list);
-		Object[][] arrs = new Object[list.size()][5];
+		
+
+		Object[][] arrs = new Object[list.size()][10];
 		for (int i = 0; i < list.size(); i++) {
 			arrs[i][0] = list.get(i).getCode().getDeptno().getDeptname();
 			arrs[i][1] = list.get(i).getCode().getName();
@@ -149,12 +133,16 @@ public class StrScore extends JFrame implements ActionListener {
 			arrs[i][3] = list.get(i).getSub1();
 			arrs[i][4] = list.get(i).getSub2();
 			arrs[i][5] = list.get(i).getSub3();
+			arrs[i][6] = list.get(i).getTotal();
+			arrs[i][7] = list.get(i).getAvg();
+			arrs[i][8] = list.get(i).getRank();
+			arrs[i][9] = list.get(i).getRankSco();
 
 		}
 		return arrs;
 	}
 
 	private String[] getColumn() {
-		return new String[] { "학과", "이름", "학번", "1과목", "2과목", "3과목"/* , "총점", "평균", "평어", "평점" */ };
+		return new String[] { "학과", "이름", "학번", "1과목", "2과목", "3과목" , "총점", "평균", "평어", "평점"  };
 	}
 }

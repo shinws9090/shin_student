@@ -9,6 +9,7 @@ import java.util.List;
 
 import shin_student.dao.StdSearchDao;
 import shin_student.dto.Codes;
+import shin_student.dto.Rank;
 import shin_student.dto.Scoers;
 import shin_student.util.JdbcUtil;
 
@@ -33,7 +34,6 @@ public class StdScoerDaoImpl extends SelectByAll implements StdSearchDao {
 			pstmt.setInt(1, code.getGrade());
 			pstmt.setInt(2, code.getDeptno().getDeptno());
 			
-			System.out.println(pstmt);
 			try (ResultSet rs = pstmt.executeQuery()) {
 				if (rs.next()) {
 					ArrayList<Scoers> list = new ArrayList<Scoers>();
@@ -44,6 +44,27 @@ public class StdScoerDaoImpl extends SelectByAll implements StdSearchDao {
 					return list;
 				}
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+	
+	
+	public Rank selectRank(double a) {
+		String sql = "select * from ranking \r\n"
+				+ "	where ? between lowsoc and hisoc ";
+		try (Connection con = JdbcUtil.getConnection(); PreparedStatement pstmt = con.prepareStatement(sql);) {
+			pstmt.setDouble(1, a);
+			
+			
+			try (ResultSet rs = pstmt.executeQuery()) {
+				if(rs.next())
+					return new Rank(rs.getString("rank"), rs.getDouble("ranksoc"));
+				}
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
