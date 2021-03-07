@@ -19,11 +19,11 @@ public class SelectByAll {
 		String name = rs.getString("name");
 		Department deptno = new Department(rs.getInt("deptno"));
 		deptno.setDeptname(rs.getString("deptname"));
+		int grade = rs.getInt("grade");
 		try {
 			int birthday = rs.getInt("birthday");
 			int social = rs.getInt("social");
 			Days dayno = new Days(rs.getInt("dayno"));
-			int grade = rs.getInt("grade");
 			Attendings atdno = new Attendings(rs.getString("atdno"));
 			Militarys miltno = new Militarys(rs.getString("miltno"));
 			dayno.setDay(rs.getString("day"));
@@ -34,7 +34,7 @@ public class SelectByAll {
 		} catch (SQLException e) {
 
 		}
-		return new Codes(no, name, deptno);
+		return new Codes(no, name, deptno, grade);
 	}
 	
 	

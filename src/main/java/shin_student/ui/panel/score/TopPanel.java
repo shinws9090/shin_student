@@ -20,7 +20,7 @@ import shin_student.dto.Department;
 import shin_student.dto.Militarys;
 import shin_student.ui.frame.StrScoreManag;
 
-public class TopPanel extends JPanel implements ActionListener {
+public class TopPanel extends JPanel {
 	private JButton btnScoManag;
 	private JComboBox cbDept;
 	private JComboBox cbGrade;
@@ -51,7 +51,7 @@ public class TopPanel extends JPanel implements ActionListener {
 		setLayout(flowLayout);
 		
 		btnScoManag = new JButton("성적 수정");
-		btnScoManag.addActionListener(this);
+		btnScoManag.setEnabled(false);
 		add(btnScoManag);
 		
 		JLabel lbl = new JLabel("                         ");
@@ -73,15 +73,7 @@ public class TopPanel extends JPanel implements ActionListener {
 		add(btnSearch);
 	}
 
-	public void actionPerformed(ActionEvent arg0) {
-		if (arg0.getSource() == btnScoManag) {
-			do_btnNewButton_actionPerformed(arg0);
-		}
-	}
-	protected void do_btnNewButton_actionPerformed(ActionEvent arg0) {
-		StrScoreManag frame = new StrScoreManag();
-		frame.setVisible(true);
-	}
+
 	
 	public Codes getCodes() {
 		

@@ -16,9 +16,8 @@ public class LowPanel extends JPanel {
 	public void setTable(JTable table) {
 		this.table = table;
 	}
-	/**
-	 * Create the panel.
-	 */
+	
+	
 	public LowPanel() {
 		initialize();
 	}
@@ -31,9 +30,7 @@ public class LowPanel extends JPanel {
 		
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null, null, null, null, null, null},
-			},
+			null,
 			new String[] {
 				"학과", "이름", "학번", "1과목", "2과목", "3과목", "총점", "평균", "평어", "평점"
 			}

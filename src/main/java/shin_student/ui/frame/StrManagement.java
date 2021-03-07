@@ -19,6 +19,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import shin_student.dao.StudentManagTopDao;
+import shin_student.dao.Impl.StdScoerDaoImpl;
 import shin_student.dao.Impl.StudentManagTopDaoImpl;
 import shin_student.dto.Codes;
 import shin_student.ui.StudentUiMain;
@@ -41,6 +42,7 @@ public class StrManagement extends JFrame implements ActionListener, MouseListen
 	private JButton btnInsert;
 	private JButton btnDelete;
 	private JButton btnBack;
+	private StdScoerDaoImpl scoDao = StdScoerDaoImpl.getInstance();
 
 	public StrManagement() {
 		initialize();
@@ -134,7 +136,7 @@ public class StrManagement extends JFrame implements ActionListener, MouseListen
 	protected void do_btnSelect_actionPerformed(ActionEvent arg0) {
 
 		tableModel = getTableModel();
-		pLeft.getTable().setModel(tableModel); 
+		pLeft.getTable().setModel(tableModel);
 
 	}
 
@@ -206,18 +208,24 @@ public class StrManagement extends JFrame implements ActionListener, MouseListen
 
 	protected void do_btnInsert_actionPerformed(ActionEvent arg0) {
 		dao.insert(pRTop.getCodes());
+
+		for (int i = 1; i <= 3; i++) {
+			scoDao.scoreInaert(pRTop.getCodes(), i);
+		}
 		tableModel = getTableModel();
 		pLeft.getTable().setModel(tableModel);
 		pRTop.clear();
 	}
 
 	protected void do_btnDelete_actionPerformed(ActionEvent arg0) {
+		scoDao.scoreDelete(pRTop.getCodes());
 		dao.delete(selecStd);
 		tableModel = getTableModel();
 		pLeft.getTable().setModel(tableModel);
 		pRTop.clear();
-		
+
 	}
+
 	protected void do_btnBack_actionPerformed(ActionEvent arg0) {
 		setVisible(false);
 		StudentUiMain.frame.setVisible(true);

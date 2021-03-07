@@ -16,12 +16,17 @@ public class Codes {
 		this.no = no;
 	}
 
-	public Codes(int no, String name, Attendings atdno) {
+	
+
+	public Codes(int no, String name, Department deptno, int grade) {
 		super();
 		this.no = no;
 		this.name = name;
-		this.atdno = atdno;
+		this.deptno = deptno;
+		this.grade = grade;
 	}
+
+
 
 	public Codes(int no, String name, int birthday, int social, Days dayno, Department deptno, int grade,
 			Attendings atdno, Militarys miltno) {
@@ -131,8 +136,8 @@ public class Codes {
 	@Override
 	public String toString() {
 		return String.format(
-				"[no=%s, name=%s]",
-				no, name);
+				"[no=%s, name=%s , grade =%s]",
+				no, name, grade);
 	}
 //	@Override
 //	public String toString() {

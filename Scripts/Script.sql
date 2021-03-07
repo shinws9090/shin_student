@@ -42,7 +42,7 @@ select * from codes
 select * from ranking r ;
 
 
-select c.`no`, name, c.deptno, s.subno ,u.subiect ,s.score ,deptname
+select c.`no`, name, c.deptno, s.subno ,u.subiect ,s.score ,deptname, grade 
 	from codes c join scores s on c.no = s.`no` 
 	join department d  on c.deptno = d.deptno
 	join subiects u on u.subno =s.subno 
@@ -54,6 +54,7 @@ select * from scores s ,ranking r
 
 select * from scores s ;
 
+
 select * from department d ;
 
 select c.`no`, name, deptno, s.subno ,u.subiect ,s.score 
@@ -64,3 +65,10 @@ select c.`no`, name, deptno, s.subno ,u.subiect ,s.score
 select * from ranking 
 	where 71.6 between lowsoc and hisoc ;
 
+update scores 
+	set score = 1
+	where no = 18022 and subno =1;
+
+insert into scores values (?,?,?);
+
+delete from scores where no = 18022;
