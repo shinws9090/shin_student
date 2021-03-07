@@ -13,10 +13,13 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.Color;
 import java.awt.SystemColor;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class Main extends JFrame {
+public class Main extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
+	private JButton btnNewButton_1;
 
 	/**
 	 * Launch the application.
@@ -57,15 +60,21 @@ public class Main extends JFrame {
 		panel.setBackground(SystemColor.window);
 		panel.setBorder(new EmptyBorder(20, 50, 20, 50));
 		contentPane.add(panel, BorderLayout.CENTER);
-		panel.setLayout(new GridLayout(0, 2, 20, 0));
 		
-		JButton btnNewButton = new JButton("학생관리");
-		btnNewButton.setBackground(new Color(240, 255, 255));
-		panel.add(btnNewButton);
-		
-		JButton btnNewButton_1 = new JButton("성적관리");
+		btnNewButton_1 = new JButton("성적관리");
+		btnNewButton_1.addActionListener(this);
+		panel.setLayout(new BorderLayout(0, 0));
 		btnNewButton_1.setBackground(new Color(255, 250, 250));
 		panel.add(btnNewButton_1);
 	}
 
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnNewButton_1) {
+			btnNewButton_1ActionPerformed(e);
+		}
+	}
+	protected void btnNewButton_1ActionPerformed(ActionEvent e) {
+		Search frame = new Search();
+		frame.setVisible(true);
+	}
 }

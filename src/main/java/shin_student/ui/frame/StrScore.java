@@ -44,8 +44,8 @@ public class StrScore extends JFrame implements ActionListener, MouseListener {
 		pScoManag = new StrScoreManag();
 		initialize();
 		scoList = dao.selectByAll(pTop.getCodes(),false);
-		pLow.getTable().setColumnSelectionAllowed(true);
-		pLow.getTable().setRowSorter(new TableRowSorter(getTableModel()));
+//		pLow.getTable().setColumnSelectionAllowed(true);
+//		pLow.getTable().setRowSorter(new TableRowSorter(getTableModel()));
 		pLow.getTable().setModel(getTableModel());
 
 	}
