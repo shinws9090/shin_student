@@ -48,6 +48,14 @@ select c.`no`, name, c.deptno, s.subno ,u.subiect ,s.score ,deptname, grade
 	join subiects u on u.subno =s.subno 
 	where c.grade = 1 and c.deptno =2 ;
 	
+select c.`no`, c.name, c.deptno, max(if(s.subno =1 ,s.score ,0)),
+								max(if(s.subno =2 ,s.score,0)),
+								max(if(s.subno =3 ,s.score,0))
+	from codes c join scores s on c.no = s.`no` 
+	join department d  on c.deptno = d.deptno
+	join subiects u on u.subno =s.subno 
+	where c.grade = 1 and c.deptno =2 
+	group by c.no;
 
 select * from scores s ,ranking r 
  where score > r.lowsoc and  score <r.hisoc ;

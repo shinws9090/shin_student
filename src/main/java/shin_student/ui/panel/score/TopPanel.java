@@ -21,15 +21,12 @@ import shin_student.dto.Militarys;
 import shin_student.ui.frame.StrScoreManag;
 
 public class TopPanel extends JPanel {
-	private JButton btnScoManag;
 	private JComboBox cbDept;
 	private JComboBox cbGrade;
 	private JButton btnSearch;
 	private ListSelectDao dao = ListSelectDaoImpl.getInstance();
 
-	public JButton getBtnScoManag() {
-		return btnScoManag;
-	}
+	
 	public JComboBox getCbDept() {
 		return cbDept;
 	}
@@ -49,10 +46,6 @@ public class TopPanel extends JPanel {
 		setBounds(12, 58, 685, 25);
 		FlowLayout flowLayout = new FlowLayout(FlowLayout.CENTER, 2, 2);
 		setLayout(flowLayout);
-		
-		btnScoManag = new JButton("성적 수정");
-		btnScoManag.setEnabled(false);
-		add(btnScoManag);
 		
 		JLabel lbl = new JLabel("                         ");
 		add(lbl);

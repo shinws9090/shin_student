@@ -22,17 +22,28 @@ public class StdScoerDaoImpl extends SelectByAll implements StdSearchDao {
 	public static StdScoerDaoImpl getInstance() {
 		return instance;
 	}
-
+	
+	
+	
+	
+	
 	@Override
-	public List selectByAll(Codes code) {
+	public List selectByAll(Codes code,boolean i) {
+		
+		String where = "";
+		if(i==true) {
+		where = "	where c.grade = ? and c.deptno =? ";
+		}
 		String sql = "select c.`no`, name, c.deptno, s.subno ,u.subiect ,s.score ,deptname , grade\r\n"
 				+ "	from codes c join scores s on c.no = s.`no` \r\n"
-				+ "	join department d  on c.deptno = d.deptno\r\n" + "	join subiects u on u.subno =s.subno \r\n"
-				+ "	where c.grade = ? and c.deptno =? ";
+				+ "	join department d  on c.deptno = d.deptno\r\n" 
+				+ "	join subiects u on u.subno =s.subno \r\n"
+				+ where;
 		try (Connection con = JdbcUtil.getConnection(); PreparedStatement pstmt = con.prepareStatement(sql);) {
+			if(i==true) {
 			pstmt.setInt(1, code.getGrade());
 			pstmt.setInt(2, code.getDeptno().getDeptno());
-
+			}
 			try (ResultSet rs = pstmt.executeQuery()) {
 				if (rs.next()) {
 					ArrayList<Scoers> list = new ArrayList<Scoers>();
@@ -118,6 +129,24 @@ public class StdScoerDaoImpl extends SelectByAll implements StdSearchDao {
 			e.printStackTrace();
 		}
 		
+		return 0;
+	}
+
+	@Override
+	public int update(Codes code2, Codes code) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int insert(Codes code) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int delete(Codes code) {
+		// TODO Auto-generated method stub
 		return 0;
 	}
 

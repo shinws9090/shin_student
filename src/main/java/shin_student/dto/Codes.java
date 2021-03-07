@@ -18,6 +18,16 @@ public class Codes {
 
 	
 
+	public Codes(Days dayno, Department deptno, int grade, Attendings atdno) {
+		super();
+		this.dayno = dayno;
+		this.deptno = deptno;
+		this.grade = grade;
+		this.atdno = atdno;
+	}
+
+
+
 	public Codes(int no, String name, Department deptno, int grade) {
 		super();
 		this.no = no;

@@ -7,6 +7,7 @@ public class ScoPrint {
 	private int sub1;
 	private int sub2;
 	private int sub3;
+	
 	private int total;
 	private double avg;
 	private String rank;

@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 public class LowPanel extends JPanel {
 	private JTable table;
@@ -29,12 +30,8 @@ public class LowPanel extends JPanel {
 		add(scrollPane, BorderLayout.CENTER);
 		
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			null,
-			new String[] {
-				"학과", "이름", "학번", "1과목", "2과목", "3과목", "총점", "평균", "평어", "평점"
-			}
-		));
+		
+		
 		scrollPane.setViewportView(table);
 	}
 

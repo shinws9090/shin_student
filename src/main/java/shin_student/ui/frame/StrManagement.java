@@ -18,7 +18,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import shin_student.dao.StudentManagTopDao;
+import shin_student.dao.StdSearchDao;
 import shin_student.dao.Impl.StdScoerDaoImpl;
 import shin_student.dao.Impl.StudentManagTopDaoImpl;
 import shin_student.dto.Codes;
@@ -34,7 +34,7 @@ public class StrManagement extends JFrame implements ActionListener, MouseListen
 	private LeftPanel pLeft;
 	private List<Codes> managList;
 	private RightPanel pRTop;
-	private StudentManagTopDao dao = StudentManagTopDaoImpl.getInstance();
+	private StdSearchDao dao = StudentManagTopDaoImpl.getInstance();
 	private JButton btnUpdate;
 	private Object res;
 	private Codes selecStd;
@@ -46,6 +46,8 @@ public class StrManagement extends JFrame implements ActionListener, MouseListen
 
 	public StrManagement() {
 		initialize();
+		managList = dao.selectByAll(new Codes(0) , false);
+		pLeft.getTable().setModel(getTableModel());
 	}
 
 	private void initialize() {
@@ -134,9 +136,8 @@ public class StrManagement extends JFrame implements ActionListener, MouseListen
 	}
 
 	protected void do_btnSelect_actionPerformed(ActionEvent arg0) {
-
-		tableModel = getTableModel();
-		pLeft.getTable().setModel(tableModel);
+		managList = pTop.selecte();
+		pLeft.getTable().setModel(getTableModel());
 
 	}
 
@@ -152,7 +153,7 @@ public class StrManagement extends JFrame implements ActionListener, MouseListen
 	}
 
 	private Object[][] getTableList() {
-		managList = pTop.selecte();
+		
 		Object[][] arrs = new Object[managList.size()][3];
 		for (int i = 0; i < managList.size(); i++) {
 			arrs[i][0] = managList.get(i).getNo();
@@ -201,6 +202,7 @@ public class StrManagement extends JFrame implements ActionListener, MouseListen
 
 	protected void do_btnUpdate_actionPerformed(ActionEvent arg0) {
 		dao.update(new Codes((Integer) res), pRTop.getCodes());
+		managList = pTop.selecte();
 		tableModel = getTableModel();
 		pLeft.getTable().setModel(tableModel);
 		pRTop.clear();
@@ -208,6 +210,7 @@ public class StrManagement extends JFrame implements ActionListener, MouseListen
 
 	protected void do_btnInsert_actionPerformed(ActionEvent arg0) {
 		dao.insert(pRTop.getCodes());
+		managList = pTop.selecte();
 
 		for (int i = 1; i <= 3; i++) {
 			scoDao.scoreInaert(pRTop.getCodes(), i);
@@ -220,6 +223,7 @@ public class StrManagement extends JFrame implements ActionListener, MouseListen
 	protected void do_btnDelete_actionPerformed(ActionEvent arg0) {
 		scoDao.scoreDelete(pRTop.getCodes());
 		dao.delete(selecStd);
+		managList = pTop.selecte();
 		tableModel = getTableModel();
 		pLeft.getTable().setModel(tableModel);
 		pRTop.clear();

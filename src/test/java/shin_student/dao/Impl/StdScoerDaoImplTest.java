@@ -13,10 +13,10 @@ public class StdScoerDaoImplTest {
 	
 	@Test
 	public void testSelectByAll() {
-		StdSearchDao dao = StdScoerDaoImpl.getInstance();
-		List s = dao.selectByAll(new Codes(new Department(2), 1) );
-		Assert.assertNotNull(s);
-		System.out.println(s);
+//		StdSearchDao dao = StdScoerDaoImpl.getInstance();
+////		List s = dao.selectByAll(new Codes(new Department(2), 1) );
+//		Assert.assertNotNull(s);
+//		System.out.println(s);
 	}
 
 }

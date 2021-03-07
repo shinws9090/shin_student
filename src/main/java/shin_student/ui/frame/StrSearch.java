@@ -34,7 +34,7 @@ public class StrSearch extends JFrame implements ActionListener {
 	 */
 	public StrSearch() {
 		initialize();
-		seachList = dao.selectByAll(pLeft.getCodes());
+		seachList = dao.selectByAll(pLeft.getCodes(),false);
 		pRight.getTable().setModel(getTableModel());
 	}
 	private void initialize() {
@@ -88,7 +88,7 @@ public class StrSearch extends JFrame implements ActionListener {
 	}
 
 	protected void do_cbGrade_actionPerformed(ActionEvent e) {
-		seachList = dao.selectByAll(pLeft.getCodes());
+		seachList = dao.selectByAll(pLeft.getCodes(),true);
 		pRight.getTable().setModel(getTableModel());
 	}
 	private DefaultTableModel getTableModel() {

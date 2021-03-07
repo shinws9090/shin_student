@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-import shin_student.dao.StudentManagTopDao;
+import shin_student.dao.StdSearchDao;
 import shin_student.dao.Impl.ListSelectDaoImpl;
 import shin_student.dao.Impl.StudentManagTopDaoImpl;
 import shin_student.dto.Attendings;
@@ -32,6 +32,7 @@ public class TopPanel extends JPanel {
 	private JComboBox cbAtd;
 	private Object[][] arrs;
 
+	
 	public JLabel getLblDays() {
 		return lblDays;
 	}
@@ -118,12 +119,13 @@ public class TopPanel extends JPanel {
 	
 	
 	public List<Codes> selecte() {
-		StudentManagTopDao dao =StudentManagTopDaoImpl.getInstance();
+		StdSearchDao dao =StudentManagTopDaoImpl.getInstance();
 		Days day = new Days((String) cbDays.getSelectedItem());
 		Department dept = new Department((String) cbDept.getSelectedItem());
 		int grade = Integer.parseInt(tfGrade.getText());
 		Attendings attendings = new Attendings("", (String) cbAtd.getSelectedItem());
+		Codes code = new Codes(day, dept, grade, attendings);
 
-		return dao.selectByAll(day, dept, grade, attendings);
+		return dao.selectByAll(code , true);
 	}
 }

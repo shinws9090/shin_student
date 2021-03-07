@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 import shin_student.dao.StdSearchDao;
 import shin_student.dao.Impl.StdScoerDaoImpl;
@@ -42,6 +43,11 @@ public class StrScore extends JFrame implements ActionListener, MouseListener {
 	public StrScore() {
 		pScoManag = new StrScoreManag();
 		initialize();
+		scoList = dao.selectByAll(pTop.getCodes(),false);
+		pLow.getTable().setColumnSelectionAllowed(true);
+		pLow.getTable().setRowSorter(new TableRowSorter(getTableModel()));
+		pLow.getTable().setModel(getTableModel());
+
 	}
 
 	private void initialize() {
@@ -72,8 +78,7 @@ public class StrScore extends JFrame implements ActionListener, MouseListener {
 		pLow.getTable().addMouseListener(this);
 		pLow.setBounds(12, 93, 685, 287);
 		contentPane.add(pLow);
-		
-		pTop.getBtnScoManag().addActionListener(this);
+
 		pScoManag.getBtnUpdate().addActionListener(this);
 		pScoManag.getBtnClose().addActionListener(this);
 	}
@@ -82,12 +87,9 @@ public class StrScore extends JFrame implements ActionListener, MouseListener {
 		if (arg0.getSource() == pTop.getBtnSearch()) {
 			do_pTopBtnSearch_actionPerformed(arg0);
 		}
-		
+
 		if (arg0.getSource() == btnHome) {
 			do_btnNewButton_actionPerformed(arg0);
-		}
-		if (arg0.getSource() == pTop.getBtnScoManag()) {
-			do_btnScoManag_actionPerformed(arg0);
 		}
 		if (arg0.getSource() == pScoManag.getBtnUpdate()) {
 			do_btnUpdate_actionPerformed(arg0);
@@ -97,33 +99,17 @@ public class StrScore extends JFrame implements ActionListener, MouseListener {
 		}
 	}
 
-	protected void do_btnScoManag_actionPerformed(ActionEvent arg0) {
-		
-		pScoManag.setVisible(true);
-		
-		int res = (int) pLow.getTable().getModel().getValueAt(pLow.getTable().getSelectedRow(), 2);
 
-		for (ScoPrint a : scoPrintList) {
-			if (a.getCode().getNo() == res) {
-				pScoManag.getpCenter().setValue(a);
-
-			}
-
-		}
-	}
 	protected void do_btnNewButton_actionPerformed(ActionEvent arg0) {
 		setVisible(false);
 		StudentUiMain.frame.setVisible(true);
 	}
 
-	
 	protected void do_pTopBtnSearch_actionPerformed(ActionEvent arg0) {
-		System.out.println("aaaaaaaaaa1");  
-		scoList = dao.selectByAll(pTop.getCodes());
+		scoList = dao.selectByAll(pTop.getCodes(),true);
 		pLow.getTable().setModel(getTableModel());
 	}
 
-	
 	private DefaultTableModel getTableModel() {
 		try {
 			return new DefaultTableModel(getTableList(), getColumn());
@@ -147,7 +133,7 @@ public class StrScore extends JFrame implements ActionListener, MouseListener {
 			for (int i = 0; i < scoList.size(); i++) {
 				if (a.getCode().equals(scoList.get(i).getNo())) {
 					switch (scoList.get(i).getSubNo()) {
-					
+
 					case 2:
 						a.setSub2(scoList.get(i).getScoer());
 						break;
@@ -159,16 +145,17 @@ public class StrScore extends JFrame implements ActionListener, MouseListener {
 				}
 			}
 		}
-		
 
 		Object[][] arrs = new Object[scoPrintList.size()][10];
 		for (int i = 0; i < scoPrintList.size(); i++) {
 			arrs[i][0] = scoPrintList.get(i).getCode().getDeptno().getDeptname();
 			arrs[i][1] = scoPrintList.get(i).getCode().getName();
 			arrs[i][2] = scoPrintList.get(i).getCode().getNo();
+			
 			arrs[i][3] = scoPrintList.get(i).getSub1();
 			arrs[i][4] = scoPrintList.get(i).getSub2();
 			arrs[i][5] = scoPrintList.get(i).getSub3();
+			
 			arrs[i][6] = scoPrintList.get(i).getTotal();
 			arrs[i][7] = scoPrintList.get(i).getAvg();
 			arrs[i][8] = scoPrintList.get(i).getRank();
@@ -179,48 +166,61 @@ public class StrScore extends JFrame implements ActionListener, MouseListener {
 	}
 
 	private String[] getColumn() {
-		return new String[] { "학과", "이름", "학번", "1과목", "2과목", "3과목" , "총점", "평균", "평어", "평점"  };
+		return new String[] { "학과", "이름", "학번", "1과목", "2과목", "3과목", "총점", "평균", "평어", "평점" };
 	}
-	
-	
-	
+
 	public void mouseClicked(MouseEvent arg0) {
 		if (arg0.getSource() == pLow.getTable()) {
 			do_pLow_mouseClicked(arg0);
 		}
 	}
+
 	public void mouseEntered(MouseEvent arg0) {
 	}
+
 	public void mouseExited(MouseEvent arg0) {
 	}
+
 	public void mousePressed(MouseEvent arg0) {
 	}
+
 	public void mouseReleased(MouseEvent arg0) {
 	}
-	
+
 	protected void do_pLow_mouseClicked(MouseEvent arg0) {
-		pTop.getBtnScoManag().setEnabled(true);
+		pScoManag.setVisible(true);
+
+		int res = (int) pLow.getTable().getModel().getValueAt(pLow.getTable().getSelectedRow(), 2);
+
+		for (ScoPrint a : scoPrintList) {
+			if (a.getCode().getNo() == res) {
+				pScoManag.getpCenter().setValue(a);
+
+			}
+
+		}
+		
 	}
 
 	protected void do_btnClose_actionPerformed(ActionEvent e) {
 		pScoManag.setVisible(false);
 	}
+
 	protected void do_btnUpdate_actionPerformed(ActionEvent e) {
 		StdScoerDaoImpl dao = StdScoerDaoImpl.getInstance();
 		ScoPrint a = pScoManag.getpCenter().getValue();
 		List<Scoers> sList = new ArrayList<Scoers>();
-		sList.add(new Scoers(a.getCode(),1,"1과목",a.getSub1()));
-		sList.add(new Scoers(a.getCode(),2,"2과목",a.getSub2()));
-		sList.add(new Scoers(a.getCode(),3,"3과목",a.getSub3()));
-		
-		for(Scoers s : sList) {
+		sList.add(new Scoers(a.getCode(), 1, "1과목", a.getSub1()));
+		sList.add(new Scoers(a.getCode(), 2, "2과목", a.getSub2()));
+		sList.add(new Scoers(a.getCode(), 3, "3과목", a.getSub3()));
+
+		for (Scoers s : sList) {
 			dao.scoreUpdate(s);
 		}
-		
-		scoList = dao.selectByAll(pTop.getCodes());
+
+		scoList = dao.selectByAll(pTop.getCodes(),true);
 		pLow.getTable().setModel(getTableModel());
-		pTop.getBtnScoManag().setEnabled(false);
 		pScoManag.setVisible(false);
-		
+
 	}
 }

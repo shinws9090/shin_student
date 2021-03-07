@@ -21,19 +21,24 @@ public class StdSearchDaoImpl  extends SelectByAll implements StdSearchDao {
 		return instance;
 	}
 	@Override
-	public List selectByAll(Codes code) {
-		
+	public List selectByAll(Codes code, boolean i) {
+		String where = "";
+		if(i==true) {
+		where = "	where social = ? and grade = ? and c.atdno = ? and c.miltno =?";
+		}
 		String sql = "select c.`no`, c.name, c.birthday, c.social, c.dayno, d2.`day`, c.deptno, d.deptname, c.grade, c.atdno, a.attending, c.miltno, m.military \r\n"
 				+ "	from codes c   \r\n" + "	join days d2  on d2.dayno = c.dayno \r\n"
 				+ "	join attendings a on c.atdno = a.atdno\r\n" 
 				+ "	join department d  on d.deptno = c.deptno \r\n"
 				+ "	join militarys m on m.miltno = c.miltno \r\n"
-				+ "	where social = ? and grade = ? and c.atdno = ? and c.miltno =?";
+				+ where;
 		try (Connection con = JdbcUtil.getConnection(); PreparedStatement pstmt = con.prepareStatement(sql);) {
+			if(i==true) {
 			pstmt.setInt(1, code.getSocial());
 			pstmt.setInt(2, code.getGrade());
 			pstmt.setString(3, code.getAtdno().getAtdno());
 			pstmt.setString(4, code.getMiltno().getMiltno());
+			}
 			try (ResultSet rs = pstmt.executeQuery()) {
 				if (rs.next()) {
 					ArrayList<Codes> list = new ArrayList<Codes>();
@@ -50,6 +55,24 @@ public class StdSearchDaoImpl  extends SelectByAll implements StdSearchDao {
 		}
 
 		return null;
+	}
+
+	@Override
+	public int update(Codes code2, Codes code) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int insert(Codes code) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int delete(Codes code) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
